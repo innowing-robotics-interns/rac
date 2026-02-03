@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Arm Random Bin Picking Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header-image {
+            max-width: 600px;
+            width: 100%;
+            height: 400px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #fff;
+            color: #11998e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+
+        .intro {
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .challenges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .challenge-card h3 {
+            color: #11998e;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .challenge-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #11998e;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .challenge-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .challenge-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .challenge-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #444;
+        }
+
+        .challenge-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #11998e;
+            font-weight: bold;
+        }
+
+        .timeline {
+            margin: 60px 0;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            color: #11998e;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .timeline-table th {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .timeline-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .timeline-table tr:hover {
+            background: #f5f7fa;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-section h2 {
+            color: #d94c00;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .info-section p {
+            color: #555;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .instructor-name {
+            color: #11998e;
+            font-weight: bold;
+            padding: 2px 6px;
+            background: rgba(17, 153, 142, 0.1);
+            border-radius: 4px;
+        }
+
+        .communication-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .channel-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .channel-card h3 {
+            color: #11998e;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        .channel-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #11998e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .channel-link:hover {
+            background: #0e8070;
+        }
+
+        .leaderboard {
+            margin: 60px 0;
+        }
+
+        .leaderboard h2 {
+            text-align: center;
+            color: #11998e;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .leaderboard-table th {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .leaderboard-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .leaderboard-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .leaderboard-table tr:hover {
+            background: #f5f7fa;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
+        .rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%); }
+        .rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
+        .rank-other { background: linear-gradient(135deg, #11998e 0%, #0e8070 100%); }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .challenges {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Robot Arm Challenge</h1>
+            <p class="subtitle">Spring 2026 - Third Season</p>
+            <p class="subtitle" style="font-size: 1.1em;">Master Random Bin Picking with AI & Robotics</p>
+            <div class="header-image">
+                <span style="color: rgba(255,255,255,0.5);">🤖📦</span>
+            </div>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">Random Bin Picking Challenge</p>
+            <a href="#register" class="cta-button">Join the Challenge</a>
+        </header>
+
+        <div class="main-content">
+            <div class="intro">
+                <h2 style="color: #11998e; font-size: 2.5em; margin-bottom: 20px;">Welcome to the RAC Competition - Spring 2026</h2>
+                <p>
+                    Test your skills in robotics, computer vision, and AI by tackling one of the most challenging 
+                    problems in industrial automation: <strong>random bin picking</strong>.
+                </p>
+                <p>
+                    Learn cutting-edge techniques, compete with peers, and build solutions that bridge 
+                    the gap between software and the physical world.
+                </p>
+                <p>
+                    <strong>Meet like-minded students and engineers for future group projects!</strong> Build your network 
+                    while developing skills that matter in robotics and AI.
+                </p>
+            </div>
+
+            <h2 style="color: #11998e; font-size: 2.5em; text-align: center; margin-bottom: 40px;">
+                Three Core Challenges
+            </h2>
+
+            <div class="challenges">
+                <div class="challenge-card">
+                    <h3><span class="challenge-number">1</span>Robot Programming</h3>
+                    <p><strong>Master Python-based robot arm control</strong></p>
+                    <p>Learn to program industrial robot arms and create precise, repeatable movements.</p>
+                    <ul>
+                        <li>Python programming fundamentals</li>
+                        <li>Robot kinematics</li>
+                        <li>Safety and error handling</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <p><strong>📚 Resources:</strong></p>
+                        <p><a href="#robot-programming" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                        <p><strong>🎥 Tutorial Videos:</strong></p>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Python robot control tutorials</p>
+                    </div>
+                </div>
+
+                <div class="challenge-card">
+                    <h3><span class="challenge-number">2</span>Hand-Eye Calibration</h3>
+                    <p><strong>Align camera and robot coordinate systems</strong></p>
+                    <p>Master the critical skill of calibrating cameras with robot arms for precise vision-guided manipulation.</p>
+                    <ul>
+                        <li>Camera calibration techniques</li>
+                        <li>Coordinate system transformations</li>
+                        <li>Extrinsic parameter estimation</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <p><strong>📚 Resources:</strong></p>
+                        <p><a href="#hand-eye-calibration" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                        <p><strong>🎥 Tutorial Videos:</strong></p>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Hand-eye calibration workshops</p>
+                    </div>
+                </div>
+
+                <div class="challenge-card">
+                    <h3><span class="challenge-number">3</span>AI Object Detection</h3>
+                    <p><strong>Implement intelligent vision systems</strong></p>
+                    <p>Use state-of-the-art AI models to detect, localize, and classify objects in cluttered environments.</p>
+                    <ul>
+                        <li>Deep learning for object detection</li>
+                        <li>CNN architectures (YOLO, R-CNN)</li>
+                        <li>Train your own detection models</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <p><strong>📚 Resources:</strong></p>
+                        <p><a href="#ai-object-detection" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                        <p><strong>🎥 Tutorial Videos:</strong></p>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - AI object detection tutorials</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>🎯 Competition Goals</h2>
+                <p><strong>The Ultimate Challenge:</strong> Create an autonomous system that can reliably sort random objects from a bin and place them in designated locations.</p>
+                <p><strong>Evaluation Criteria:</strong> Speed and accuracy.</p>
+            </div>
+
+            <div class="timeline">
+                <h2>📅 Competition Timeline</h2>
+                <table class="timeline-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Content</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>RAC Promotion starts</strong></td>
+                            <td>
+                                Teaching materials & competition rules released
+                            </td>
+                            <td><span class="highlight">Feb 6, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sharing by the 2nd RAC Finalists</strong></td>
+                            <td>
+                                Previous winners share their experiences:<br>
+                                • How to approach the challenge<br>
+                                • Common pitfalls and solutions<br>
+                                • Advanced techniques
+                            </td>
+                            <td><span class="highlight">Feb 13, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Robot Programming Workshop</strong></td>
+                            <td>
+                                Self-learning workshop <br>
+                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist
+                            </td>
+                            <td><span class="highlight">Feb 25, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hand-Eye Calibration Workshop</strong></td>
+                            <td>
+                                This workshop will be taught by <span class="instructor-name">Lei</span> and <span class="instructor-name">Ian</span><br>
+                                Hands-on calibration techniques for Click-and-Go demo
+                            </td>
+                            <td><span class="highlight">Mar 4, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Help Desk Session</strong></td>
+                            <td>Open Q&A and troubleshooting for Hand-Eye Calibration Workshop</td>
+                            <td><span class="highlight">Mar 10, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Object Detection Workshop</strong></td>
+                            <td>
+                                Self-learning workshop<br>
+                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist
+                            </td>
+                            <td><span class="highlight">Mar 11, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Help Desk Session</strong></td>
+                            <td>Open Q&A and troubleshooting for Object Detection Workshop</td>
+                            <td><span class="highlight">Mar 12, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Final Challenge - Timeslot 1</strong></td>
+                            <td>
+                                Compete in your assigned timeslot<br>
+                                <strong>Prerequisite:</strong> Click-and-Go demo submitted on Monday of this week
+                            </td>
+                            <td><span class="highlight">Mar 18, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Final Challenge - Timeslot 2</strong></td>
+                            <td>
+                                Compete in your assigned timeslot<br>
+                                <strong>Prerequisite:</strong> Click-and-Go demo submitted on Monday of this week
+                            </td>
+                            <td><span class="highlight">Apr 1, 2026</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Final Challenge - Timeslot 3</strong></td>
+                            <td>
+                                Compete in your assigned timeslot<br>
+                                <strong>Prerequisite:</strong> Click-and-Go demo submitted on Monday of this week
+                            </td>
+                            <td><span class="highlight">Apr 15, 2026</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-section" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                <h2>💡 What You'll Learn</h2>
+                <p>✓ Industrial robot programming and control</p>
+                <p>✓ Computer vision and camera calibration</p>
+                <p>✓ Deep learning for object detection and pose estimation</p>
+                <p>✓ System integration and real-time processing</p>
+                <p>✓ Problem-solving in real-world robotics applications</p>
+            </div>
+
+            <div style="margin: 60px 0;">
+                <h2 style="color: #11998e; font-size: 2.5em; text-align: center; margin-bottom: 40px;">📱 Join Our Community</h2>
+                <p style="text-align: center; font-size: 1.2em; color: #555; margin-bottom: 40px;">
+                    Stay connected with fellow participants, get updates, and ask questions!
+                </p>
+                
+                <div class="communication-section">
+                    <div class="channel-card">
+                        <h3>💬 Discord Channel</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Join our Discord server for real-time discussions and support</p>
+                        <div class="qr-placeholder">
+                            <span style="color: #667eea;">📷</span>
+                        </div>
+                        <p style="font-size: 0.9em; color: #888; margin-bottom: 10px;">Scan QR code or click below</p>
+                        <a href="#discord" class="channel-link">Join Discord</a>
+                    </div>
+
+                    <div class="channel-card">
+                        <h3>📱 WhatsApp Channel</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Get instant updates and announcements on WhatsApp</p>
+                        <div class="qr-placeholder">
+                            <span style="color: #11998e;">📷</span>
+                        </div>
+                        <p style="font-size: 0.9em; color: #888; margin-bottom: 10px;">Scan QR code or click below</p>
+                        <a href="#whatsapp" class="channel-link">Join WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <h2 style="color: #11998e; font-size: 2.5em; margin-bottom: 20px;">Ready to Take the Challenge?</h2>
+                <p style="font-size: 1.2em; color: #555; margin-bottom: 30px;">
+                    Join us in pushing the boundaries of robotics and AI!
+                </p>
+                <a href="#register" class="cta-button" id="register">Register Now</a>
+            </div>
+
+            <div class="leaderboard">
+                <h2>🏆 Leaderboard - Season 3</h2>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team / Participant</th>
+                            <th>Score</th>
+                            <th>Time (sec)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="rank-badge rank-1">1</span></td>
+                            <td><strong>TBD</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span style="color: #999;">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-2">2</span></td>
+                            <td><strong>TBD</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span style="color: #999;">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-3">3</span></td>
+                            <td><strong>TBD</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span style="color: #999;">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">4</span></td>
+                            <td>TBD</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span style="color: #999;">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">5</span></td>
+                            <td>TBD</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span style="color: #999;">Upcoming</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="text-align: center; margin-top: 20px; color: #666; font-style: italic;">
+                    Leaderboard will be updated after each final challenge timeslot
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Robot Arm Challenge (RAC) Spring 2026 - Season 3 | Build the Future of Automation</p>
+            <p style="margin-top: 10px; opacity: 0.8;">For questions, contact: <span class="instructor-name" style="color: rgba(255,255,255,0.95); background: rgba(255,255,255,0.2);">IA Lei</span> and the RAC team</p>
+        </footer>
+    </div>
+</body>
+</html>
