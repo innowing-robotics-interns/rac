@@ -47,6 +47,45 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
+
+
+        /* Header video (large hero) - keep existing header-image sizing but make iframe fill it */
+        .header-image iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        /* Card-style video (smaller, distinct look for challenge cards) */
+        .card-video {
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 16/9;
+            margin: 12px auto;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .card-video iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
@@ -377,7 +416,15 @@
             <p class="subtitle">Spring 2026 - Season 3</p>
             <p class="subtitle" style="font-size: 1.1em;">Master Random Bin Picking with AI & Robotics</p>
             <div class="header-image">
-                <span style="color: rgba(255,255,255,0.5);">🤖📦</span>
+                <!-- Embedded YouTube teaser (autoplay muted, loop) -->
+                <div style="position:relative; width:100%; height:100%;">
+                    <iframe
+                        src="https://www.youtube.com/embed/d3H7gkm_iUs?autoplay=1&mute=1&loop=1&playlist=d3H7gkm_iUs&controls=0&rel=0"
+                        title="RAC Teaser"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                    ></iframe>
+                </div>
             </div>
             <a href="#register" class="cta-button">Join the Robot Arm Random Bin Picking Challenge</a>
         </header>
@@ -405,6 +452,17 @@
                 <div class="challenge-card">
                     <h3><span class="challenge-number">1</span>Robot Programming</h3>
                     <p><strong>Master Python-based robot arm control</strong></p>
+                    <div style="margin-top:15px;">
+                    <!-- Arm control teaser video -->
+                        <div class="card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/dbB5dVWdzZE?autoplay=1&mute=1&loop=1&playlist=dbB5dVWdzZE&controls=0&rel=0"
+                                title="Arm control Teaser"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
                     <p>Learn to program industrial robot arms and create precise, repeatable movements.</p>
                     <ul>
                         <li>Python programming fundamentals</li>
@@ -412,18 +470,29 @@
                         <li>Safety and error handling</li>
                     </ul>
                     <div style="margin-top: 20px;">
-                        <p><strong>📚 Resources:</strong></p>
-                        <p><a href="#robot-programming" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                        <p><strong>📚 Learning Resources:</strong></p>
+                        <p><a href="https://hkuarmstrong.notion.site/1-Robotic-Arm-Basic-Control-2fd97c42c7f380c49d81ef358801eeee?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
                     </div>
-                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                    <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Python robot control tutorials</p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="challenge-card">
                     <h3><span class="challenge-number">2</span>Hand-Eye Calibration</h3>
                     <p><strong>Align camera and robot coordinate systems</strong></p>
+                    <div style="margin-top:15px;">
+                        <!-- Hand-Eye Calibration teaser video -->
+                        <div class="card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/eKP47GSF5cA?autoplay=1&mute=1&loop=1&playlist=eKP47GSF5cA&controls=0&rel=0"
+                                title="Hand-Eye Calibration Teaser"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
                     <p>Master the critical skill of calibrating cameras with robot arms for precise vision-guided manipulation.</p>
                     <ul>
                         <li>Camera calibration techniques</li>
@@ -431,18 +500,29 @@
                         <li>Extrinsic parameter estimation</li>
                     </ul>
                     <div style="margin-top: 20px;">
-                        <p><strong>📚 Resources:</strong></p>
-                        <p><a href="#hand-eye-calibration" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                        <p><strong>📚 Learning Resources:</strong></p>
+                        <p><a href="https://hkuarmstrong.notion.site/2-Hand-eye-Calibration-2fd97c42c7f38049b21fffb654102967?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
                     </div>
-                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                    <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Hand-eye calibration workshops</p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="challenge-card">
                     <h3><span class="challenge-number">3</span>AI Object Detection</h3>
                     <p><strong>Implement intelligent vision systems</strong></p>
+                    <div style="margin-top:15px;">
+                        <!-- Detection teaser video -->
+                        <div class="card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/G2cyRek8wfI?autoplay=1&mute=1&loop=1&playlist=G2cyRek8wfI&controls=0&rel=0"
+                                title="YOLO Detection Teaser"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
                     <p>Use state-of-the-art AI models to detect, localize, and classify objects in cluttered environments.</p>
                     <ul>
                         <li>Deep learning for object detection</li>
@@ -450,13 +530,20 @@
                         <li>Train your own detection models</li>
                     </ul>
                     <div style="margin-top: 20px;">
-                        <p><strong>📚 Resources:</strong></p>
-                        <p><a href="#ai-object-detection" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                        <p><strong>📚 Learning Resources:</strong></p>
+                        <p><a href="https://hkuarmstrong.notion.site/3-Object-Detection-2fd97c42c7f3804fbab0ebd4d8199bc8?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
                     </div>
-                    <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
+                    <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - AI object detection tutorials</p>
-                    </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- RAC Overview moved below the core components -->
+            <div style="text-align: center; margin: 30px 0;">
+                <div class="header-image" style="max-width:900px; margin:0 auto;">
+                    <img src="images/rac-overview.png" alt="Robot Arm Challenge Overview - Showing the complete workflow from AprilTag detection through calibration, object detection, and robotic manipulation" />
                 </div>
             </div>
 
@@ -530,7 +617,7 @@
                         <tr>
                             <td><strong>Hand-Eye Calibration Workshop</strong></td>
                             <td>
-                                This workshop will be taught by <a href="https://leiyangjustin.github.io" target="_blank" style="text-decoration: none;"><span class="instructor-name">Dr. Lei</span></a> and <span class="instructor-name">Ian</span><br>
+                                This workshop will be taught by <a href="https://leiyangjustin.github.io" target="_blank" style="text-decoration: none;"><span class="instructor-name">Dr. Lei</span></a> and <a href="https://iltlo.github.io/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"><span class="instructor-name">Ian</span></a><br>
                                 Hands-on calibration techniques for Click-and-Go demo
                             </td>
                             <td><span class="highlight">Mar 4, 2026</span></td>
