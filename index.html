@@ -337,6 +337,32 @@
             background: #0e8070;
         }
 
+        .register-button {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 18px;
+            background: #11998e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+        }
+
+        .register-button.is-disabled {
+            background: #9fb9b4;
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+        }
+
         .leaderboard {
             margin: 60px 0;
         }
@@ -429,7 +455,7 @@
             <!-- Add this line:     This competition is supported by Tam Wing Fan Innovation Fund and Philomathia Foundation Innovation Fund
  -->
             <p class="subtitle" style="margin-top: 20px; font-size: 1em;">This competition is supported by Tam Wing Fan Innovation Fund and Philomathia Foundation Innovation Fund</p>
-            <a href="#register" class="cta-button">Join the Robot Arm Random Bin Picking Challenge</a>
+            <a href="https://forms.gle/Jmjyj7ya3jR4WPSz9" class="cta-button" target="_blank" rel="noopener noreferrer">Join the Robot Arm Random Bin Picking Challenge</a>
         </header>
 
         <div class="main-content">
@@ -476,6 +502,9 @@
                         <p><strong>📚 Learning Resources:</strong></p>
                         <p><a href="https://hkuarmstrong.notion.site/1-Robotic-Arm-Basic-Control-2fd97c42c7f380c49d81ef358801eeee?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
                     </div>
+                    <div style="margin-top: 12px;">
+                        <a class="register-button" href="https://hkuems1.hku.hk/hkuems/ec_hdetail.aspx?UEID=105192" target="_blank" rel="noopener noreferrer">Register Workshop</a>
+                    </div>
                     <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Python robot control tutorials</p>
@@ -506,6 +535,9 @@
                         <p><strong>📚 Learning Resources:</strong></p>
                         <p><a href="https://hkuarmstrong.notion.site/2-Hand-eye-Calibration-2fd97c42c7f38049b21fffb654102967?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
                     </div>
+                    <div style="margin-top: 12px;">
+                        <a class="register-button is-disabled" href="#" aria-disabled="true" title="Registration link to be confirmed">Register Workshop</a>
+                    </div>
                     <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 8px;">Coming soon - Hand-eye calibration workshops</p>
@@ -535,6 +567,9 @@
                     <div style="margin-top: 20px;">
                         <p><strong>📚 Learning Resources:</strong></p>
                         <p><a href="https://hkuarmstrong.notion.site/3-Object-Detection-2fd97c42c7f3804fbab0ebd4d8199bc8?source=copy_link" target="_blank" rel="noopener noreferrer" style="color: #11998e; text-decoration: none; font-weight: bold;">→ Learn More</a></p>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <a class="register-button is-disabled" href="#" aria-disabled="true" title="Registration link to be confirmed">Register Workshop</a>
                     </div>
                     <!-- <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 8px;">
                         <p><strong>🎥 Tutorial Videos:</strong></p>
@@ -613,7 +648,8 @@
                             <td><strong>Robot Programming Workshop</strong></td>
                             <td>
                                 Self-learning workshop <br>
-                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist
+                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist<br>
+                                <a class="register-button" href="https://hkuems1.hku.hk/hkuems/ec_hdetail.aspx?UEID=105192" target="_blank" rel="noopener noreferrer">Register</a>
                             </td>
                             <td><span class="highlight">Feb 25, 2026</span></td>
                         </tr>
@@ -621,7 +657,8 @@
                             <td><strong>Hand-Eye Calibration Workshop</strong></td>
                             <td>
                                 This workshop will be taught by <a href="https://leiyangjustin.github.io" target="_blank" style="text-decoration: none;"><span class="instructor-name">Dr. Lei</span></a> and <a href="https://iltlo.github.io/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;"><span class="instructor-name">Ian</span></a><br>
-                                Hands-on calibration techniques for Click-and-Go demo
+                                Hands-on calibration techniques for Click-and-Go demo<br>
+                                <a class="register-button is-disabled" href="#" aria-disabled="true" title="Registration link to be confirmed">Register Workshop</a>
                             </td>
                             <td><span class="highlight">Mar 4, 2026</span></td>
                         </tr>
@@ -634,7 +671,8 @@
                             <td><strong>Object Detection Workshop</strong></td>
                             <td>
                                 Self-learning workshop<br>
-                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist
+                                <span class="instructor-name">InnoWing SRAs</span> will stand by and assist<br>
+                                <a class="register-button is-disabled" href="#" aria-disabled="true" title="Registration link to be confirmed">Register Workshop</a>
                             </td>
                             <td><span class="highlight">Mar 11, 2026</span></td>
                         </tr>
@@ -722,7 +760,7 @@
                 <p style="font-size: 1.2em; color: #555; margin-bottom: 30px;">
                     Join us in pushing the boundaries of robotics and AI!
                 </p>
-                <a href="#register" class="cta-button" id="register">Register Now</a>
+                <a href="https://forms.gle/Jmjyj7ya3jR4WPSz9" class="cta-button" id="register" target="_blank" rel="noopener noreferrer">Register Now</a>
             </div>
 
             <div class="leaderboard">
